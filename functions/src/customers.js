@@ -1,6 +1,6 @@
 const { connectDb } = require("./db");
 
-exports.createCustomer = (req, res) => {
+exports.createCustomer = async (req, res) => {
     // check that all required fields are present
     if(!req.body.name || !req.body.phone || !req.body.email) {
         res.status(401).send({message: 'invalid request'})
@@ -19,7 +19,7 @@ exports.createCustomer = (req, res) => {
     //     .then(docRef => res.status(201).send({ id: docRef.id}))
     //     .catch(err => res.status(500).send(err))
     try {
-      const docRef = await db.collection('customers').add(newItem) // this is the name of collection
+      const docRef  = await db.collection('customers').add(newItem) // this is the name of collection
       res.status(201).send({ id: docRef.id})
       } catch(err) {
         res.status(500).send(err)

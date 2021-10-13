@@ -52,7 +52,7 @@ exports.createProduct = (req, res) => {
   let newItem = {
     sku: req.body.sku,
     type: req.body.type,
-    price: Number(req.body.price.toFixed(2)),
+    price: Number(Number(req.body.price).toFixed(2)),
     graphic: req.body.graphic ? true : false,
   };
   if (req.body.sizes) newItem.sizes = req.body.sizes;
